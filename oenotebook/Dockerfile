@@ -1,15 +1,61 @@
-FROM jupyter/scipy-notebook
+FROM ubuntu:14.04
+#FROM jupyter/scipy-notebook
 #FROM ipython/scipystack
 
 MAINTAINER OpenEye <mattg@eyesopen.com>
 
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN apt-get update && apt-get install -y wget libcairo2-dev && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Configure environment
+ENV CONDA_DIR /opt/conda
+ENV PATH $CONDA_DIR/bin:$PATH
+ENV SHELL /bin/bash
+
+# Install Conda
+# RUN cd /tmp && \
+#     mkdir -p $CONDA_DIR && \
+#     wget --quiet https://repo.continuum.io/miniconda/Miniconda3-3.9.1-Linux-x86_64.sh && \
+#     echo "6c6b44acdd0bc4229377ee10d52c8ac6160c336d9cdd669db7371aa9344e1ac3 *Miniconda3-3.9.1-Linux-x86_64.sh" | sha256sum -c - && \
+#     /bin/bash Miniconda3-3.9.1-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
+#     rm Miniconda3-3.9.1-Linux-x86_64.sh && \
+#     $CONDA_DIR/bin/conda install --yes conda==3.14.1
+
+RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
+    wget --quiet https://repo.continuum.io/miniconda/Miniconda-3.16.0-Linux-x86_64.sh && \
+    /bin/bash /Miniconda-3.16.0-Linux-x86_64.sh -b -p /opt/conda && \
+    rm Miniconda-3.16.0-Linux-x86_64.sh && \
+    /opt/conda/bin/conda install --yes conda==3.19.1 && \
+    /opt/conda/bin/pip install --upgrade pip
+
+RUN conda install --yes \
+    'jupyter' \
+    'ipywidgets=4.0*' \
+    'pandas=0.17*' \
+    'matplotlib=1.4*' \
+    'scipy=0.16*' \
+    'seaborn=0.6*' \
+    'scikit-learn=0.16*' \
+    'sympy=0.7*' \
+    'patsy=0.4*' \
+    'statsmodels=0.6*' \
+    'bokeh=0.10*' \
+    && conda clean -yt
+
+
+
 # Dependencies for OE Example Notebooks
 # Commented for local install because of pip problems. DNS resolution of devpi.eyesopen.com, even if static IP passed
 
-RUN pip2 install -U pip
+# RUN source activate python2
 
 COPY requirements.txt /tmp/requirements.txt
-RUN pip2 install -i https://devpi.eyesopen.us/oe/dev/ -r /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+#RUN pip install -i https://pypi.anaconda.org/OpenEye/simple -r /tmp/requirements.txt
+
 
 # oe-user is our user
 # RUN useradd -m -s /bin/bash oeuser
@@ -44,4 +90,4 @@ WORKDIR /tmp/notebooks/
 
 # RUN find . -name '*.ipynb' -exec ipython2 trust {} \;
 
-CMD ipython2 notebook --no-browser --ip=*
+CMD jupyter notebook --no-browser --ip=*

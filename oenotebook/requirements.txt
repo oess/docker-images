@@ -1,2 +1,7 @@
+## Non-Conda Packages ##
+mpld3
+#
+## OE Packages from specific Repo ##
+-i https://devpi.eyesopen.us/oe/dev/
 OpenEye-toolkits
 OpenEye-oenotebook
