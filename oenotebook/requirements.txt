@@ -2,6 +2,7 @@
 mpld3
 #
 ## OE Packages from specific Repo ##
+# -i https://pypi.anaconda.org/OpenEye/simple
 -i https://devpi.eyesopen.us/oe/dev/
 OpenEye-toolkits
 OpenEye-oenotebook
