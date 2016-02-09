@@ -1,6 +1,4 @@
 FROM ubuntu:14.04
-#FROM jupyter/scipy-notebook
-#FROM ipython/scipystack
 
 MAINTAINER OpenEye <mattg@eyesopen.com>
 
@@ -41,8 +39,8 @@ RUN conda install --quiet --yes \
 
 # Install OE TKs
 COPY requirements.txt /tmp/requirements.txt
-RUN pip install -r /tmp/requirements.txt
-
+RUN pip install -r /tmp/requirements.txt && \
+    pip install --pre --extra-index-url https://pypi.anaconda.org/OpenEye/channel/beta/simple OpenEye-oenotebook
 EXPOSE 8888
 
 ENV OE_LICENSE /tmp/oe_license.txt

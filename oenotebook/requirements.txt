@@ -1,7 +1,6 @@
 ## Non-Conda Packages ##
 mpld3
 #
-## OE Packages from specific Repo ##
+## OE Packages from Anaconda Repo ##
 --extra-index-url https://pypi.anaconda.org/OpenEye/simple
 OpenEye-toolkits
-OpenEye-oenotebook
