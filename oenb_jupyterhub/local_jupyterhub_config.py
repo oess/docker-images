@@ -21,6 +21,7 @@ sys.path.insert(0, root)
 
 print(subprocess.call(["bash", "/tmp/add_user.sh", "/opt/hub_data/userlist"]))
 
+first_user = True
 with open('/opt/hub_data/userlist') as f:
     for line in f:
         if not line:
@@ -28,8 +29,9 @@ with open('/opt/hub_data/userlist') as f:
         parts = line.strip().split(",")
         name = parts[0]
         whitelist.add(name)
-        if name in ['nbadmin']:
+        if first_user or name in ['nbadmin']:
             admin.add(name)
+            first_user = False
 
 os.remove("/opt/hub_data/userlist")
 os.remove("/tmp/add_user.sh")

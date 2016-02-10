@@ -93,7 +93,6 @@ ADD local_jupyterhub_config.py /srv/jupyterhub/jupyterhub_config.py
 
 ADD cull_idle_servers.py /tmp/cull_idle_servers.py
 RUN chmod 700 /srv/oauthenticator
-ADD user_env.bash /tmp/user_env.bash
 
 ADD add_user.sh /tmp/add_user.sh
 
