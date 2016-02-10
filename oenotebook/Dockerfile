@@ -39,8 +39,8 @@ RUN conda install --quiet --yes \
 
 # Install OE TKs
 COPY requirements.txt /tmp/requirements.txt
-RUN pip install -r /tmp/requirements.txt && \
-    pip install --pre --extra-index-url https://pypi.anaconda.org/OpenEye/channel/beta/simple OpenEye-oenotebook
+RUN pip --no-cache-dir install -r /tmp/requirements.txt && \
+    pip --no-cache-dir install --pre --extra-index-url https://pypi.anaconda.org/OpenEye/channel/beta/simple OpenEye-oenotebook
 EXPOSE 8888
 
 ENV OE_LICENSE /tmp/oe_license.txt
