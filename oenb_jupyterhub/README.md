@@ -36,6 +36,8 @@ george,bosco
 elaine,JohnJohn
 ```
 
+---
+
 ### Example Commands
 * Launch a multi-user notebook server:
 ```

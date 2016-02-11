@@ -1,0 +1,4 @@
+## Placeholder so git would make the dir
+# ignore everything except .gitignore
+*
+!.gitignore
