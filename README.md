@@ -6,3 +6,6 @@ Docker images for OpenEye.
 
 ### **oenb_jupyterhub**
 > This docker image sets up a JupyterHub, the multi-user server for Jupyter Notebooks. OpenEye Toolkits and OENotebook are included.
+
+### **oenb_tmpnb_worker**
+> This docker image is the worker image for running a TmpNB server where every visitor gets their own temporary notebook server. It is not designed to run on its own.
