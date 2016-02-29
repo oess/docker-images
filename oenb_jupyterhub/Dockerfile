@@ -1,5 +1,4 @@
-# Use version of ubuntu with tweaked PAM so we can add users after starting container
-FROM sequenceiq/pam:ubuntu-14.04
+FROM ubuntu:14.04
 
 MAINTAINER OpenEye <mattg@eyesopen.com>
 
@@ -7,6 +6,15 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y wget libcairo2-dev npm nodejs nodejs-legacy && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+
+# Need to rebuild pam to deal with kernel issue
+# rebuild and install libpam with --disable-audit option
+# see https://github.com/sequenceiq/docker-pam
+RUN apt-get update && apt-get -y build-dep pam && export CONFIGURE_OPTS=--disable-audit && cd /root && apt-get -b source pam && \
+    dpkg -i libpam-doc*.deb libpam-modules*.deb libpam-runtime*.deb libpam0g*.deb && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 
 # Configure environment
 ENV CONDA_DIR /opt/conda
