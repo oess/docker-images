@@ -2,8 +2,6 @@ FROM openeye/oenotebook
 
 MAINTAINER OpenEye <mattg@eyesopen.com>
 
-ADD
-
 ENV OE_LICENSE /opt/hub_data/oe_license.txt
 
 # oe-user is our user
@@ -13,4 +11,4 @@ USER oe-user
 
 WORKDIR /home/oe-user/
 
-CMD /bin/bash /tmp/start_jupyter.bash --no-browser --ip=*
+CMD /bin/bash /tmp/start_jupyter.bash
