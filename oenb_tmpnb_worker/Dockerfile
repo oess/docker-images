@@ -2,7 +2,7 @@ FROM openeye/oenotebook
 
 MAINTAINER OpenEye <mattg@eyesopen.com>
 
-ENV OE_LICENSE /opt/hub_data/oe_license.txt
+ENV OE_LICENSE /mnt/vol0/oe_license.txt
 
 # oe-user is our user
 RUN useradd -m -s /bin/bash oe-user

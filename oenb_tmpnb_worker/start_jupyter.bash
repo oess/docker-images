@@ -8,7 +8,7 @@ ipython kernel install
 
 mkdir -p $HOME/notebooks
 
-cp -R /hub_data/notebooks/* $HOME/notebooks/
+cp -R /mnt/vol0/notebooks/* $HOME/notebooks/
 
 chown -R oe-user:oe-user /home/oe-user
 
