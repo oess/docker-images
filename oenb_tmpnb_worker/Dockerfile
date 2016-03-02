@@ -1,0 +1,16 @@
+FROM openeye/oenotebook
+
+MAINTAINER OpenEye <mattg@eyesopen.com>
+
+ADD
+
+ENV OE_LICENSE /opt/hub_data/oe_license.txt
+
+# oe-user is our user
+RUN useradd -m -s /bin/bash oe-user
+ADD start_jupyter.bash /tmp/start_jupyter.bash
+USER oe-user
+
+WORKDIR /home/oe-user/
+
+CMD /bin/bash /tmp/start_jupyter.bash --no-browser --ip=*
