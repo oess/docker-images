@@ -104,4 +104,4 @@ RUN chmod 700 /srv/oauthenticator
 
 ADD add_user.sh /tmp/add_user.sh
 
-CMD ["jupyterhub", "-f", "/srv/jupyterhub/jupyterhub_config.py","--port","80"]
+CMD ["jupyterhub", "-f", "/srv/jupyterhub/jupyterhub_config.py","--port","80","--no-ssl"]
