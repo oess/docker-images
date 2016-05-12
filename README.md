@@ -1,6 +1,12 @@
 # docker-images
 Docker images for OpenEye. Repos for [https://hub.docker.com/u/openeye/](https://hub.docker.com/u/openeye/)
 
+### **oetk_py2**
+> Base image with conda, python2, and OpenEye Toolkits.
+
+### **oetk_py3**
+> Base image with conda, python3, and OpenEye Toolkits.
+
 ### **oenotebook**
 > A docker image with a basic installation of jupyter notebooks with OpenEye Toolkits and OENotebook installed. Just provide a license file.
 
