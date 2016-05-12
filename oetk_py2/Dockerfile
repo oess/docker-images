@@ -19,5 +19,3 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 # Install OE TKs
 COPY requirements.txt /tmp/requirements.txt
 RUN pip --no-cache-dir install -r /tmp/requirements.txt
-
-ENV OE_LICENSE /tmp/oe_license.txt
