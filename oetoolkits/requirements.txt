@@ -1,0 +1,5 @@
+## Non-Conda Packages ##
+#
+## OE Packages from Anaconda Repo ##
+--extra-index-url https://pypi.anaconda.org/OpenEye/simple
+OpenEye-toolkits
