@@ -2,6 +2,7 @@ FROM ubuntu:14.04
 
 MAINTAINER OpenEye <mattg@eyesopen.com>
 
+ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -19,8 +20,10 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda && \
     rm Miniconda3-latest-Linux-x86_64.sh && \
     /opt/conda/bin/conda update --quiet --yes conda && \
+    /opt/conda/bin/conda config --system --add channels conda-forge && \
     /opt/conda/bin/conda install --yes pip && \
-    /opt/conda/bin/pip install --upgrade pip
+    /opt/conda/bin/pip install --upgrade pip && \
+    conda clean -tipsy
 
 # Install Python/IPython/Jupyter Stack
 RUN conda install --quiet --yes \
