@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     ca-certificates \
     sudo \
     locales \
+    libcairo2-dev \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
